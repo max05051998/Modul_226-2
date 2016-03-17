@@ -19,7 +19,7 @@ abstract class Person {
     public abstract int berechneFerien(int alter);
 
     public String print(){
-        return "Name: " + Name + "Vorname: " + Vorname + "Personalnummer: " + Personalnummer;
+        return "Name: " + Name + " Vorname: " + Vorname + " Personalnummer: " + Personalnummer + " ";
     }
 }
 
@@ -42,7 +42,7 @@ class Chef extends Person {
 
     @Override
     public String print() {
-        return super.print() + "Abteilung: " + Abteilung;
+        return super.print() + "Abteilung: " + Abteilung + " ";
     }
 }
 class Fachangestellter extends Person {
@@ -72,16 +72,12 @@ class Lehrling extends Person {
     }
     @Override
     public int berechneFerien(int alter) {
-        int ferien = 4;
-        if (alter >= 45)
-            ferien++;
-        if (alter >= 55)
-            ferien++;
+        int ferien = 5;
         return ferien;
     }
 
     @Override
-    public String print() { return super.print() + "Lehrjahr: " + Lehrjahr; }
+    public String print() { return super.print() + "Lehrjahr: " + Lehrjahr + " "; }
 }
 
 class Firma {
@@ -94,40 +90,14 @@ class Firma {
 public class Personen {
     public static void main (String args[]) {
         Person[] personen = new Person[4];
-        personen[0] = new Chef("Meier", "Peter", 1, "Administration",47);
-        personen[1] = new Fachangestellter("Stadler", "Hans","Entwickler", 2,(Chef) personen[0], 20);
-        personen[2] = new Fachangestellter("Muster", "Fritz","Verkauf", 3, (Chef) personen[0],63);
-        personen[3] = new Lehrling("Steiger", "Max","Entwickler", 4, 16, 2);
+        personen[0] = new Chef("Meier", "Peter", 4456, "Administration",47);
+        personen[1] = new Fachangestellter("Stadler", "Hans","Entwickler", 7169,(Chef) personen[0], 20);
+        personen[2] = new Fachangestellter("Muster", "Fritz","Verkauf", 3741, (Chef) personen[0],63);
+        personen[3] = new Lehrling("Steiger", "Max","Entwickler", 4652, 16, 2);
 
         for (int i = 0; i < personen.length; i++) {
-            System.out.println(personen[i].Vorname);
-            System.out.println(personen[i].Name);
-            System.out.println(personen[i].Abteilung);
-            System.out.println(personen[i].Personalnummer);
+            System.out.println(personen[i].print());
             System.out.println("----------------------------------------------------");
         }
-        /*Chef chef1 = new Chef("Cossandey", "Johnas", "Verkauf", 2245);
-        Fachangestellter personal1 = new Fachangestellter("Weissman", "Beat", "Verkauf", 4512, chef1);
-        Fachangestellter personal2 = new Fachangestellter("Haldemann", "Patrick", "Entwicklung", 1337, chef1);
-        Person person1 = new Person("Hilfiger", "Thomas", "Entwicklung", 7784);
-        Lehrling lehrling1 = new Lehrling("Steiger", "Max", "Entwicklung", 0505, 2);
-
-        chef1.Name = "Sattler";
-        chef1.Abteilung = "Entwicklung";
-        personal1.Name = "Klein";
-        personal1.Vorname = "Thomas";*/
-
-        /*personal1.Vorgesetzter=personal3;
-        personal4 = personal1;
-        personal4.Vorgesetzter = personal3;
-        personal1 = personal4;
-        personal1 = (Fachangestellter) personal4;*/
-
-        //Firma f = new Firma(
-                //new Person[] {new Chef("Sattler", "Beatrice", "Verkauf", 2599)} );
-
-//        System.out.println(chef1.print());
-//        System.out.println(personal1.print());
-//        System.out.println(lehrling1.print());
     }
 }
