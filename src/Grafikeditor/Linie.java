@@ -14,7 +14,6 @@ public class Linie extends Figur {
 
 	@Override
 	public void move(int deltaX, int deltaY) {
-		// TODO Auto-generated method stub
 		super.move(deltaX, deltaY);
 		this.endX = this.endX + deltaX;
 		this.endY = this.endY + deltaY;
@@ -22,7 +21,6 @@ public class Linie extends Figur {
 
 	@Override
 	public void zeichne(Graphics g) {
-		// TODO Auto-generated method stub
 		g.drawLine(x, y, endX, endY);
 	}
 	

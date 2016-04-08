@@ -4,7 +4,6 @@ public class Main {
 	private static final Display display = new Display();
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Kreis k = new Kreis(50, 70, 75);
 		Linie l = new Linie(150, 450, 700, 300);
 		Rechteck r = new Rechteck(65, 200, 250, 150);

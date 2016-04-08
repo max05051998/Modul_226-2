@@ -14,7 +14,6 @@ public class Rechteck extends Figur {
 
 	@Override
 	public void zeichne(Graphics g) {
-		// TODO Auto-generated method stub
 		g.drawRect(x, y, hoehe, breite);
 	}
 

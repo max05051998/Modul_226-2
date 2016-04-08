@@ -10,7 +10,6 @@ public class Bogen extends Figur{
 	
 	public Bogen(int x, int y, int breite, int hoehe, int startWinkel, int bogenWinkel) {
 		super(x, y);
-		// TODO Auto-generated constructor stub
 		this.breite = breite;
 		this.hoehe = hoehe;
 		this.startWinkel = startWinkel;
@@ -19,7 +18,6 @@ public class Bogen extends Figur{
 
 	@Override
 	public void zeichne(Graphics g) {
-		// TODO Auto-generated method stub
 		g.drawArc(x, y, breite, hoehe, startWinkel, bogenWinkel);
 	}
 

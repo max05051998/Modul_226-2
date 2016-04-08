@@ -12,7 +12,6 @@ public class Kreis extends Figur {
 
 	@Override
 	public void zeichne(Graphics g) {
-		// TODO Auto-generated method stub
 		g.drawOval(x, y, 2*radius, 2*radius);
 	}
 }
