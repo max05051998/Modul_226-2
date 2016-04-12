@@ -1,6 +1,8 @@
 package Grafikeditor;//package lektion2;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,7 @@ public class Display extends JFrame {
         setLocation(windowPosition);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         createAndAddDrawingPanel();
+
         /** Added for design purposes */
         try
         {
@@ -48,9 +51,67 @@ public class Display extends JFrame {
     }
 
     private void createAndAddDrawingPanel() {
+        String figurenListe[] = {"","Bogen", "Kreis", "Trapez", "Linie", "Rechteck"};
+
+        JPanel jPanelMain = new JPanel();
+        JPanel jPanelButtons = new JPanel();
+        JButton jButtonDelete = new JButton();
+        JButton jButtonAdd = new JButton();
+        JComboBox jComboBoxFiguren = new JComboBox(figurenListe) {
+            @Override
+            public Dimension getMaximumSize() {
+                Dimension dim = super.getMaximumSize();
+                dim.height = getPreferredSize().height;
+                return dim;
+            }
+        };
+
+        jPanelMain.setLayout(new BoxLayout(jPanelMain, BoxLayout.Y_AXIS));
+
+        jPanelButtons.setLayout(new BoxLayout(jPanelButtons, BoxLayout.X_AXIS));
+
+        jButtonDelete.setText("Alles Löschen");
+        jButtonDelete.setFocusPainted(false);
+        jButtonDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                allesLoeschen();
+            }
+        });
+
+        jButtonAdd.setText("Figur hinzufügen");
+        jButtonAdd.setFocusPainted(false);
+        jButtonAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Figur selectedObject = null;
+                if (jComboBoxFiguren.getSelectedIndex() < 0) {
+                    JOptionPane.showMessageDialog(jPanelMain, "Bitte wähle eine Figur aus die erstellt werden soll");
+                }
+                else {
+                    switch (jComboBoxFiguren.getSelectedIndex()) {
+                        case 0: break;
+                        case 1: selectedObject = new Bogen(400, 300, 150, 150, 0, 0);
+                            break;
+                        case 2: selectedObject = new Kreis(400, 300, 50);
+                            break;
+                        case 3: selectedObject = new Trapez(400, 300, 150, 300, 100);
+                            break;
+                        case 4: selectedObject = new Linie(400, 300, 400, 400);
+                            break;
+                        case 5: selectedObject = new Rechteck(400, 300, 150, 150);
+                            break;
+                    }
+                    hinzufuegen(selectedObject);
+                }
+            }
+        });
+
+
+        this.getContentPane().add(jPanelMain);
         // Das JPanel-Objekt ist ein Objekt einer anonymen Unterklasse von JPanel
         // Siehe Java-Grundkurs Abschnitt 3.9
-        add(new JPanel() {
+        jPanelMain.add(new JPanel() {
             // Die paintComponent()-Methode wird automatisch aufgerufen, wenn irgendwer die repaint()-
             // Methode beim Display aufruft.
             @Override
@@ -59,14 +120,15 @@ public class Display extends JFrame {
                 zeichneFiguren(g);
             }
         });
-    }
+        jPanelMain.add(jPanelButtons);
 
-    /** Tried adding Button*/
-   /* private void createButtons(){
-        JButton button1 = new JButton("Reset");
-        button1.setSize(30, 10);
-        //add(button1);
-    }*/
+        jPanelButtons.add(jButtonDelete);
+        jPanelButtons.add(jButtonAdd);
+        jPanelButtons.add(jComboBoxFiguren);
+
+        // Alle Elemente auf kleinstmögliche Grösse bringen/
+        //pack();
+    }
 
     /**
      * Zeichnet alle Figuren.
